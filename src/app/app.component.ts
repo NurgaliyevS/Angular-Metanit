@@ -1,22 +1,40 @@
 import { Component } from '@angular/core';
-export class User {
-  constructor(
-    public name: string,
-    public email: string,
-    public phone: string
-  ) {}
-}
+import { FormArray, FormControl, FormGroup, Validators } from '@angular/forms';
 @Component({
   selector: 'my-app',
   templateUrl: './app.component.html',
-  styles: [`
-  input.ng-touched.ng-invalid {border:solid red 2px;}
-  input.ng-touched.ng-valid {border:solid green 2px;}
-`]
+  styles: [
+    `
+      input.ng-touched.ng-invalid {
+        border: solid red 2px;
+      }
+      input.ng-touched.ng-valid {
+        border: solid green 2px;
+      }
+    `,
+  ],
 })
 export class AppComponent {
-  user: User = new User('', '', '');
-  addUser(){
-    console.log(this.user);
+  myForm: FormGroup;
+  constructor() {
+    this.myForm = new FormGroup({
+      userName: new FormControl('Tom', Validators.required),
+      userEmail: new FormControl('', [Validators.required, Validators.email]),
+      phones: new FormArray([new FormControl('+7', Validators.required)]),
+    });
+  }
+
+  getFormsControls(): FormArray {
+    return this.myForm.controls['phones'] as FormArray;
+  }
+
+  addPhone() {
+    (<FormArray>this.myForm.controls['phones']).push(
+      new FormControl('+7', Validators.required)
+    );
+  }
+
+  submit() {
+    console.log(this.myForm);
   }
 }
