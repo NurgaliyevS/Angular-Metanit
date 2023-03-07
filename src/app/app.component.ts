@@ -1,18 +1,21 @@
-import { Component, ElementRef, ViewChild } from '@angular/core';
+import { Component } from '@angular/core';
+import { DataService } from './data.service';
 @Component({
   selector: 'my-app',
-  templateUrl: './app.component.html'
+  templateUrl: './app.component.html',
+  providers: [DataService]
 })
 export class AppComponent{
-  @ViewChild("nameText", {static: false})
-  nameParagraph: ElementRef | undefined;
+  items: string[] = [];
+  name: string = "";
 
-  name: string = 'Tom'
+  constructor(private dataService: DataService){}
 
-  change(){
-    if (this.nameParagraph !== undefined) {
-      console.log(this.nameParagraph.nativeElement.textContent)
-      this.nameParagraph.nativeElement.textContent = 'hell';
-    }
+  addItem(name: string) {
+    this.dataService.addData(name);
+  }
+
+  ngOnInit(){
+    this.items = this.dataService.getData();
   }
 }
