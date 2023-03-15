@@ -1,40 +1,26 @@
-import { Component } from '@angular/core';
-import { FormArray, FormControl, FormGroup, Validators } from '@angular/forms';
+import { Component, OnInit } from '@angular/core';
+import { User } from './user';
+import { HttpService } from './http.service';
 @Component({
   selector: 'my-app',
   templateUrl: './app.component.html',
-  styles: [
-    `
-      input.ng-touched.ng-invalid {
-        border: solid red 2px;
-      }
-      input.ng-touched.ng-valid {
-        border: solid green 2px;
-      }
-    `,
-  ],
+  providers: [HttpService],
 })
 export class AppComponent {
-  myForm: FormGroup;
-  constructor() {
-    this.myForm = new FormGroup({
-      userName: new FormControl('Tom', Validators.required),
-      userEmail: new FormControl('', [Validators.required, Validators.email]),
-      phones: new FormArray([new FormControl('+7', Validators.required)]),
+  user: User = new User('', 0);
+
+  receivedUser: User | undefined;
+  done: boolean = false;
+
+  constructor(private httpService: HttpService) {}
+
+  submit(user: User) {
+    this.httpService.postData(user).subscribe({
+      next: (data: any) => {
+        this.receivedUser = data;
+        this.done = true;
+      },
+      error: (error) => console.log(error),
     });
-  }
-
-  getFormsControls(): FormArray {
-    return this.myForm.controls['phones'] as FormArray;
-  }
-
-  addPhone() {
-    (<FormArray>this.myForm.controls['phones']).push(
-      new FormControl('+7', Validators.required)
-    );
-  }
-
-  submit() {
-    console.log(this.myForm);
   }
 }
