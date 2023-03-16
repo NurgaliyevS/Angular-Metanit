@@ -8,6 +8,7 @@ import { AboutComponent } from './about/about.component';
 import { NotFoundComponent } from './not-found/not-found.component';
 import { RouterModule, Routes } from '@angular/router';
 import { ItemComponent } from './item/item.component';
+import { DataComponent } from './data/data.component';
 
 const appRoutes: Routes = [
   { path: '', component: HomeComponent },
@@ -30,6 +31,7 @@ const appRoutes: Routes = [
     AboutComponent,
     NotFoundComponent,
     ItemComponent,
+    DataComponent,
   ],
   bootstrap: [AppComponent],
 })
