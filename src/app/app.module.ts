@@ -7,11 +7,12 @@ import { HomeComponent } from './home/home.component';
 import { AboutComponent } from './about/about.component';
 import { NotFoundComponent } from './not-found/not-found.component';
 import { RouterModule, Routes } from '@angular/router';
+import { ItemComponent } from './item/item.component';
 
 const appRoutes: Routes = [
   { path: '', component: HomeComponent },
   { path: 'about', component: AboutComponent },
-  { path: 'contact', redirectTo: '/about', pathMatch: 'full' },
+  { path: 'item/:id', component: ItemComponent },
   { path: '**', component: NotFoundComponent },
 ];
 
@@ -28,6 +29,7 @@ const appRoutes: Routes = [
     HomeComponent,
     AboutComponent,
     NotFoundComponent,
+    ItemComponent,
   ],
   bootstrap: [AppComponent],
 })

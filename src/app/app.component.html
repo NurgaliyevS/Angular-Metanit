@@ -9,7 +9,10 @@
     <br />
     <a routerLink="/about" routerLinkActive="active">About</a>
     <br />
-    <a routerLink="/contact" routerLinkActive="active">Contact</a>
+    <a [routerLink]="['item', '5']" routerLinkActive="active">Item 5</a>
+    <br />
+
+    <a [routerLink]="['item', '8']" routerLinkActive="active">Item 8</a>
     <br />
     <a routerLink="/else" routerLinkActive="active">Else</a>
   </nav>
