@@ -5,6 +5,13 @@ import { HttpService } from './http.service';
   selector: 'my-app',
   templateUrl: './app.component.html',
   providers: [HttpService],
+  styles: [
+    `
+      .active {
+        color: red;
+      }
+    `,
+  ],
 })
 export class AppComponent {
   user: User = new User('', 0);
