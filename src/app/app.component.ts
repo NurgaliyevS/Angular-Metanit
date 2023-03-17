@@ -1,33 +1,28 @@
 import { Component, OnInit } from '@angular/core';
-import { User } from './user';
-import { HttpService } from './http.service';
+import { Router } from '@angular/router';
+
+export class Item {
+  constructor(public id: number, public product: string, public price: number) {}
+}
 @Component({
   selector: 'my-app',
   templateUrl: './app.component.html',
-  providers: [HttpService],
-  styles: [
-    `
-      .active {
-        color: red;
-      }
-    `,
-  ],
 })
 export class AppComponent {
-  user: User = new User('', 0);
+  item: Item = new Item(1, '', 0);
+  
+  constructor(private router: Router) {};
 
-  receivedUser: User | undefined;
-  done: boolean = false;
+  goHome(){
+    this.router.navigate([''])
+  }
 
-  constructor(private httpService: HttpService) {}
-
-  submit(user: User) {
-    this.httpService.postData(user).subscribe({
-      next: (data: any) => {
-        this.receivedUser = data;
-        this.done = true;
-      },
-      error: (error) => console.log(error),
-    });
+  goToItem(myItem: Item) {
+    this.router.navigate(['/item', myItem.id], {
+      queryParams: {
+        'product': myItem.product,
+        'price': myItem.price
+      }
+    })
   }
 }
