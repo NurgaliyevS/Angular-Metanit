@@ -9,20 +9,4 @@ export class Item {
   templateUrl: './app.component.html',
 })
 export class AppComponent {
-  item: Item = new Item(1, '', 0);
-  
-  constructor(private router: Router) {};
-
-  goHome(){
-    this.router.navigate([''])
-  }
-
-  goToItem(myItem: Item) {
-    this.router.navigate(['/item', myItem.id], {
-      queryParams: {
-        'product': myItem.product,
-        'price': myItem.price
-      }
-    })
-  }
 }

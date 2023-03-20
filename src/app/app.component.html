@@ -2,18 +2,10 @@
   <nav>
     <a routerLink="">Main</a>
     <br />
-    <a routerLink="/about">About</a>
+    <a routerLink="/item/5/details">Info product</a>
+    <br />
+    <a routerLink="/item/5/stat">Stat product</a>
   </nav>
-
-  <div class="form-group">
-    <h3>Params Object</h3>
-    <input type="number" [(ngModel)]="item.id" placeholder="number model" />
-    <br />
-    <input type="number" [(ngModel)]="item.price" placeholder="price" />
-    <br />
-    <input type="text" [(ngModel)]="item.product" placeholder="name model" />
-    <button (click)="goToItem(item)">Navigate</button>
-  </div>
 </div>
 
 <router-outlet></router-outlet>

@@ -8,19 +8,12 @@ import { Subscription, switchMap } from 'rxjs';
 })
 export class ItemComponent {
   id: number | undefined;
-  product: string | undefined;
-  price: number | undefined;
 
   private routeSubscription: Subscription;
-  private querySubscription: Subscription;
 
   constructor(private route: ActivatedRoute) {
-    this.routeSubscription = route.params.subscribe(params => this.id = params['id']);
-
-
-    this.querySubscription = route.queryParams.subscribe(params => {
-      this.price = params['price'];
-      this.product = params['product'];
-    });
+    this.routeSubscription = route.params.subscribe(
+      (params) => (this.id = params['id'])
+    );
   }
 }

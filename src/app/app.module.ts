@@ -9,11 +9,18 @@ import { NotFoundComponent } from './not-found/not-found.component';
 import { RouterModule, Routes } from '@angular/router';
 import { ItemComponent } from './item/item.component';
 import { DataComponent } from './data/data.component';
+import { ItemStatComponent } from './item.stat/item.stat.component';
+import { ItemDetailsComponent } from './item.details/item.details.component';
+
+const itemRoutes: Routes = [
+  { path: 'details', component: ItemDetailsComponent },
+  { path: 'stat', component: ItemStatComponent },
+];
 
 const appRoutes: Routes = [
   { path: '', component: HomeComponent },
   { path: 'about', component: AboutComponent },
-  { path: 'item/:id', component: ItemComponent },
+  { path: 'item/:id', component: ItemComponent, children: itemRoutes },
   { path: '**', component: NotFoundComponent },
 ];
 
@@ -32,6 +39,8 @@ const appRoutes: Routes = [
     NotFoundComponent,
     ItemComponent,
     DataComponent,
+    ItemStatComponent,
+    ItemDetailsComponent,
   ],
   bootstrap: [AppComponent],
 })
