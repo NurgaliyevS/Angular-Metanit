@@ -11,6 +11,8 @@ import { ItemComponent } from './item/item.component';
 import { DataComponent } from './data/data.component';
 import { ItemStatComponent } from './item.stat/item.stat.component';
 import { ItemDetailsComponent } from './item.details/item.details.component';
+import { AboutGuard } from './about.guard';
+import { ExitAboutGuard } from './exit.about.guard';
 
 const itemRoutes: Routes = [
   { path: 'details', component: ItemDetailsComponent },
@@ -19,7 +21,7 @@ const itemRoutes: Routes = [
 
 const appRoutes: Routes = [
   { path: '', component: HomeComponent },
-  { path: 'about', component: AboutComponent },
+  { path: 'about', component: AboutComponent, canActivate: [AboutGuard], canDeactivate: [ExitAboutGuard] },
   { path: 'item/:id', component: ItemComponent, children: itemRoutes },
   { path: '**', component: NotFoundComponent },
 ];
@@ -43,5 +45,6 @@ const appRoutes: Routes = [
     ItemDetailsComponent,
   ],
   bootstrap: [AppComponent],
+  providers: [AboutGuard, ExitAboutGuard],
 })
 export class AppModule {}
