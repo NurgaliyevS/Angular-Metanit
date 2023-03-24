@@ -13,6 +13,8 @@ import { ItemStatComponent } from './item.stat/item.stat.component';
 import { ItemDetailsComponent } from './item.details/item.details.component';
 import { AboutGuard } from './about.guard';
 import { ExitAboutGuard } from './exit.about.guard';
+import { FormatPipe } from './format.pipe';
+import { JoinPipe } from './join.pipe';
 
 const itemRoutes: Routes = [
   { path: 'details', component: ItemDetailsComponent },
@@ -43,6 +45,8 @@ const appRoutes: Routes = [
     DataComponent,
     ItemStatComponent,
     ItemDetailsComponent,
+    FormatPipe,
+    JoinPipe
   ],
   bootstrap: [AppComponent],
   providers: [AboutGuard, ExitAboutGuard],

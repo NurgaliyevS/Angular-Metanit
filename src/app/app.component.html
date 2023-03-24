@@ -1,13 +1,17 @@
+<div>Number before formatting {{ x }}</div>
+
+<div>Number after formatting {{ x | format }}</div>
+
 <div>
-  <nav>
-    <a routerLink="">Main</a>
-    <br />
-    <a routerLink="/about">About</a>
-    <br/>
-    <a routerLink="/item/5/details">Info product</a>
-    <br />
-    <a routerLink="/item/5/stat">Stat product</a>
-  </nav>
+    {{users | join}}
 </div>
 
-<router-outlet></router-outlet>
+
+<div>
+    {{users | join:1}}
+</div>
+
+
+<div>
+    {{users | join:1:3}}
+</div>
