@@ -1,18 +1,18 @@
-import { Component } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
+import { Observable } from 'rxjs';
+import { HttpService } from './http.service';
 
-export class Item {
-  constructor(public id: number, public product: string, public price: number) {}
-}
 @Component({
   selector: 'my-app',
   templateUrl: './app.component.html',
+  providers: [HttpService]
 })
-export class AppComponent {
-  x: number = 15.45;
+export class AppComponent implements OnInit {
+  users: Observable<Object> | undefined;
 
-  users = ["Tom", "Alice", "Sam", "Kate", "Bob"];
+  constructor(private httpService: HttpService){}
 
-  addUser(user: any){
-    this.users.push(user.value);
+  ngOnInit(){
+    this.users = this.httpService.getUsers();
   }
 }
