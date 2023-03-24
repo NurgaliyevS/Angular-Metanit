@@ -11,4 +11,8 @@ export class AppComponent {
   x: number = 15.45;
 
   users = ["Tom", "Alice", "Sam", "Kate", "Bob"];
+
+  addUser(user: any){
+    this.users.push(user.value);
+  }
 }
